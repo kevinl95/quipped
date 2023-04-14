@@ -7,8 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-flask = "^2.2.3"
 gunicorn = "^20.1.0"
+flask-pwa = "^0.1.0"
+markupsafe = "2.0.1"
 
 
 [build-system]
