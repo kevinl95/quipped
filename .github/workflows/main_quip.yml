@@ -26,11 +26,11 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          cd src/game
       
       - name: Install dependencies
         run: |
           pip install poetry
+          cd src
           poetry install
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
