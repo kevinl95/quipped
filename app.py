@@ -54,13 +54,13 @@ def create_app():
         game = ScrabbleGame(num_players=1)
         r = game.player_rack_list[0]
         print(r)
-        myteststr = ""
+        prettyRack = ""
         for l in r:
             if l.letter == "*":
-                myteststr += "?"
+                prettyRack += "?"
             else:
-                myteststr += l.letter
-        letters = myteststr
+                prettyRack += l.letter
+        letters = prettyRack
 
         result = []
         with open('dictionary.txt', 'r') as words_file:
@@ -70,6 +70,6 @@ def create_app():
                     result.append(word)
 
         result = sorted(result, key=lambda w: len(w), reverse=True)
-        return render_template("index.html", rack=r, possibilities=result)
+        return render_template("index.html", rack=prettyRack)
 
     return app

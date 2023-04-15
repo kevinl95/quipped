@@ -3,55 +3,156 @@
 </style>
 <html lang="en" {% block html_attrs  %}{% endblock html_attrs %}>
 {% block html %}
-  <head>
-    {% block head %}
-    <title>{% block title %}Quipped{% endblock title %}</title>
 
-    {% block metas %}
-    <meta name="description" content="Quipped - a simple word game for friends!" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  {% block head %}
+  <title>{% block title %}Quipped{% endblock title %}</title>
 
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}"/>
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-icon-180x180.png') }}">
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    {% endblock metas %}
+  {% block metas %}
+  <meta name="description" content="Quipped - a simple word game for friends!" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% block css %}
-    {% endblock css %}
-    
-    {% endblock head %}
-  </head>
-  <body{% block body_attrs %}{% endblock body_attrs %}>
-    {% block body %}
-    
-    <div id="app">  
-      {% block content %}
-      <p>Here are today's letters: {{ rack }}</p>
-      {{possibilities}}
-      {% endblock content %}
-    </div>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-icon-180x180.png') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  {% endblock metas %}
 
-    {% block scripts %}
-    {% endblock scripts %}
+  {% block css %}
+  {% endblock css %}
 
-    {% block serviceworker %}
-    <script type="text/javascript">
-      if ("serviceWorker" in navigator) {
-          window.addEventListener("load", () => {
-          navigator.serviceWorker
-              .register("/sw.js")
-              .then((registration) => {
-                console.log(`Yay! ServiceWorker is loaded 🎉`)
-              })
-              .catch((err) => {
-                console.log(`Boo! ServiceWorker didn't load 😬: ${err}`);
-              });
-          });
-      }
+  {% endblock head %}
+</head>
+<body{% block body_attrs %}{% endblock body_attrs %}>
+  {% block body %}
+
+  <div id="app">
+    {% block content %}
+    <header>
+      <div class="row">
+        <div class="logo-row">
+          <img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Quipped" class="logo">
+        </div>
+      </div>
+    </header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+    <!-- link rel="stylesheet" href="css/main.css" media="all" / -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-1.4.3.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.blockUI.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-css-transform.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-animate-css-rotate-scale.js') }}">
     </script>
-    {% endblock serviceworker %}
-    {% endblock body %}
-  </body>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/rotate3Di.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-ui-1.8.7.custom.min.js') }}"></script>
+
+    <script>
+      var _sf_startpt = (new Date()).getTime()
+    </script>
+
+    <script type="text/javascript">
+      function init() {
+
+        // quit if this function has already been called
+        if (arguments.callee.done) return;
+
+        // flag this function so we don't do the same thing twice
+        arguments.callee.done = true;
+
+        $(document).ready(function () {
+
+          var obj = $("#title");
+          obj.rotate3Di(360, 1000, {
+            sideChange: function (front) {
+              if (front) {
+                //
+              } else {
+                //			        obj.animate({scale: 1}, 500);
+              }
+            },
+            complete: function () {
+              //
+            }
+          });
+        });
+
+      };
+
+      /* for Mozilla */
+      if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", init, false);
+      }
+
+      /* for Internet Explorer */
+      /*@cc_on @*/
+      /*@if (@_win32)
+      document.write("<script defer src=ie_onload.js><"+"/script>");
+      /*@end @*/
+
+      /* for other browsers */
+      window.onload = init;
+    </script>
+    <style type="text/css" media="all">
+      .cnotie {
+        display: block
+      }
+    </style>
+    <!--<![endif]-->
+    </head>
+
+    <body id="body">
+
+      <div id="title">
+        <span>{{rack}}</span>
+      </div>
+
+      <div style="background-color: rgb(2, 90, 99); padding: 1em;">
+
+
+        <p>
+          <input id="text_field" type="text" onmousedown="resetTextField();" size="15" style="width: 25em"></input>
+          <input type="submit" onclick="checkWord();" value="Score Word"></input>
+        </p>
+        <div id="anagrams" class="tableDivWrap"></div>
+      </div>
+
+      <div id="rack" class="tableDivWrap bottomShade"></div>
+
+    </body>
+
+</html>
+{% endblock content %}
+</div>
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block serviceworker %}
+<script type="text/javascript">
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          console.log(`Yay! ServiceWorker is loaded 🎉`)
+        })
+        .catch((err) => {
+          console.log(`Boo! ServiceWorker didn't load 😬: ${err}`);
+        });
+    });
+  }
+</script>
+{% endblock serviceworker %}
+{% endblock body %}
+</body>
 {% endblock html %}
+
 </html>
