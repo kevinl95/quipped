@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'quip'
           slot-name: 'Production'
-          startup-command: 'gunicorn --bind=0.0.0.0 --timeout 600 "app:create_app()"'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DD9199BC96DF4DD7BFC7F9D59820D6BC }}
