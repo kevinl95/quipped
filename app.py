@@ -1,5 +1,8 @@
+import random
 from flask import Flask, render_template, send_file
 from flask_pwa import PWA
+from scrabble.main import ScrabbleGame
+from datetime import datetime
 
 # Monkeypatching PWA implementation
 
@@ -18,12 +21,55 @@ def init_manifest(self):
 PWA._init_sw = init_sw
 PWA._init_manifest = init_manifest
 
+def can_spell(letters, word):
+    # reverse sort to get the blanks ('?') to the end of letters string,
+    # so that the greedy algorithm works
+    letters = sorted(letters, reverse=True)
+    word = list(word)
+
+    for letter in letters:
+        if len(word) == 0:
+            return True
+        elif letter == '?':
+            word.pop()
+        elif letter in word:
+            word.remove(letter)
+
+    return len(word) == 0
+
 def create_app():
     app = Flask(__name__)
     PWA(app)
 
     @app.route("/")
     def index():
-        return render_template("index.html")
+        # Creating a datetime object for tday
+        a = datetime.now()
+
+        # Converting a to string in the desired format (YYYYMMDD) using strftime
+        # and then to int.
+        a = int(a.strftime('%Y%m%d'))
+        # Use as our seed so everyone gets the same rack
+        random.seed(a)
+        game = ScrabbleGame(num_players=1)
+        r = game.player_rack_list[0]
+        print(r)
+        myteststr = ""
+        for l in r:
+            if l.letter == "*":
+                myteststr += "?"
+            else:
+                myteststr += l.letter
+        letters = myteststr
+
+        result = []
+        with open('dictionary.txt', 'r') as words_file:
+            for line in words_file:
+                word = line.strip()
+                if can_spell(letters, word):
+                    result.append(word)
+
+        result = sorted(result, key=lambda w: len(w), reverse=True)
+        return render_template("index.html", rack=r, possibilities=result)
 
     return app
