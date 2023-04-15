@@ -4,14 +4,12 @@ from flask_pwa import PWA
 # Monkeypatching PWA implementation
 
 def init_sw(self):
-    print("I got used")
     return send_file(
         "static/js/sw.js",
         attachment_filename="sw.js",
     )
 
 def init_manifest(self):
-    print("And I got used")
     return send_file(
         "static/manifest.json",
         attachment_filename="manifest.json",
