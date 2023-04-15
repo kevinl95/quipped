@@ -1,8 +1,8 @@
 {
-    "name": "Quipped",
+    "name": "Quipped - A Word Game for Friends!",
     "short_name": "Quipped",
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#32afb5",
+    "background_color": "#32afb5",
     "display": "standalone",
     "Scope": "/",
     "orientation": "any",
