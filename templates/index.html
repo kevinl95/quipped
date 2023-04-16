@@ -179,7 +179,6 @@
             today = mm + '/' + dd + '/' + yyyy;
             var submissions = $('#toshare').text();
             var text = "Quipped! Today " + today + "\n" + submissions;
-            console.log(text);
             if (navigator.share) {
               
               navigator.share({
@@ -199,8 +198,10 @@
               });
             } else {
 
-              // Alerts user if API not available 
-              alert("Browser doesn't support this API!");
+              navigator.clipboard.writeText(text);
+
+              // Alert about the copied text
+              alert("Copied to your clipboard: " + text);
             }
           })
       </script>
