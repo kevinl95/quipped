@@ -94,10 +94,11 @@
         }, function (result) {
           console.log(result);
           if (result["return"] == "True") {
-            alert("Success: " + text + " is in the dictionary! It scores " + result["score"] + " points!");
-            var result = text + ', scoring ' + result["score"];
+            var score = result["score"];
+            alert("Success: " + text + " is in the dictionary! It scores " + score + " points!");
+            var result = text + ', scoring ' + score;
             var userLength = text.length;
-            var shareResult = "*️⃣".repeat(userLength) + ', scoring ' + result["score"];
+            var shareResult = "*️⃣".repeat(userLength) + ', scoring ' + score + "! \n";
             var txt = document.createElement("p");
             var shareTxt = document.createElement("p");
             txt.innerHTML = result;
@@ -161,7 +162,7 @@
       </div>
       <div id="submissions">
       </div>
-      <div id="toshare" style="visibility: hidden"></div>
+      <div id="toshare" style="display: none;">></div>
       <button id="shareBtn">Share Your Results!</button>
       <script>
         document.querySelector('#shareBtn')
