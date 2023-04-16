@@ -41,6 +41,11 @@ def create_app():
     app = Flask(__name__)
     PWA(app)
 
+    @app.route('/background_process_test')
+    def background_process_test():
+        print ("Hello")
+        return ("nothing")
+
     @app.route("/")
     def index():
         # Creating a datetime object for tday
@@ -53,7 +58,6 @@ def create_app():
         random.seed(a)
         game = ScrabbleGame(num_players=1)
         r = game.player_rack_list[0]
-        print(r)
         prettyRack = ""
         for l in r:
             if l.letter == "*":

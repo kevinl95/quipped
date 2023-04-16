@@ -86,6 +86,16 @@
 
       };
 
+      function checkWord()
+      {
+        var text = $("#text_field").val();
+        $.getJSON('/background_process_test',
+            function(data) {
+          //do nothing
+        });
+        return false;
+      }
+
       /* for Mozilla */
       if (document.addEventListener) {
         document.addEventListener("DOMContentLoaded", init, false);
@@ -121,7 +131,7 @@
           <input id="text_field" type="text" onmousedown="resetTextField();" size="15" style="width: 25em"></input>
           <input type="submit" onclick="checkWord();" value="Score Word"></input>
         </p>
-        <div id="anagrams" class="tableDivWrap"></div>
+        <div id="submissions" class="tableDivWrap"></div>
       </div>
 
       <div id="rack" class="tableDivWrap bottomShade"></div>
