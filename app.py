@@ -109,7 +109,7 @@ def create_app():
 
         # Converting a to string in the desired format (YYYYMMDD) using strftime
         # and then to int.
-        a = int(a.strftime("%Y%m%d"))
+        a = int(a.strftime("%Y%m%d")) + 1
         # Use as our seed so everyone gets the same rack
         random.seed(a)
         game = ScrabbleGame(num_players=1)
@@ -120,6 +120,39 @@ def create_app():
                 prettyRack += "?"
             else:
                 prettyRack += l.letter
+        letters = prettyRack
+        result = []
+        with open("dictionary.txt", "r") as words_file:
+            for line in words_file:
+                word = line.strip()
+                if can_spell(letters, word):
+                    result.append(word)
+        result = sorted(result, key=lambda w: len(w), reverse=True)
+        if len(result) == 0:
+            newres = []
+            ind = 1
+            # Loop until we have a valid rack
+            while len(newres) == 0:
+                a = a + ind
+                # Use as our seed so everyone gets the same rack
+                random.seed(a)
+                game = ScrabbleGame(num_players=1)
+                r = game.player_rack_list[0]
+                prettyRack = ""
+                for l in r:
+                    if l.letter == "*":
+                        prettyRack += "?"
+                    else:
+                        prettyRack += l.letter
+                letters = prettyRack
+                result = []
+                with open("dictionary.txt", "r") as words_file:
+                    for line in words_file:
+                        word = line.strip()
+                        if can_spell(letters, word):
+                            result.append(word)
+                newres = sorted(result, key=lambda w: len(w), reverse=True)
+                ind = ind + 1
         return render_template("index.html", rack=prettyRack)
 
     return app
