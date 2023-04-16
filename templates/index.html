@@ -69,9 +69,9 @@
 
         $(document).ready(function () {
           var today = new Date();
-          var dd = String(today.getDate()).padStart(2, '0');
-          var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-          var yyyy = today.getFullYear();
+          var dd = String(today.getUTCDate()).padStart(2, '0');
+          var mm = String(today.getUTCMonth() + 1).padStart(2, '0'); //January is 0!
+          var yyyy = today.getUTCFullYear();
           // Fill in previous submissions from local storage for the day
           today = mm + '/' + dd + '/' + yyyy;
           if (today in localStorage) {
@@ -115,9 +115,9 @@
             $('#toshare').append(shareTxt);
             // Store in session
             var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
+            var dd = String(today.getUTCDate()).padStart(2, '0');
+            var mm = String(today.getUTCMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getUTCFullYear();
 
             today = mm + '/' + dd + '/' + yyyy;
             localStorage.setItem(today, $('#submissions').html());
@@ -188,9 +188,9 @@
             // if navigator.share function is
             // available
             var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
+            var dd = String(today.getUTCDate()).padStart(2, '0');
+            var mm = String(today.getUTCMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getUTCFullYear();
 
             today = mm + '/' + dd + '/' + yyyy;
             var submissions = $('#toshare').text();
