@@ -80,7 +80,7 @@ def create_app():
 
     @app.route("/checkword", methods=["POST"])
     def receive_data():
-        userInput = request.form["word"].upper()  # Convert to uppercase
+        userInput = request.form["word"].upper().strip()  # Convert to uppercase and remove spaces
         response = "True"
         score = 0
         rack = request.form["rack"]
