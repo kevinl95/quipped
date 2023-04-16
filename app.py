@@ -109,7 +109,7 @@ def create_app():
 
         # Converting a to string in the desired format (YYYYMMDD) using strftime
         # and then to int.
-        a = int(a.strftime("%Y%m%d")) + 1
+        a = int(a.strftime("%Y%m%d"))
         # Use as our seed so everyone gets the same rack
         random.seed(a)
         game = ScrabbleGame(num_players=1)
