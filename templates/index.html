@@ -89,9 +89,23 @@
       function checkWord()
       {
         var text = $("#text_field").val();
-        $.getJSON('/background_process_test',
-            function(data) {
-          //do nothing
+        $.post("/checkword", {"word": text, "rack": "{{rack}}"}, function(result) {
+          console.log(result); 
+          if (result["return"] == "True")
+          {
+            alert("Success: " + text + " is in the dictionary! It scores " + result["score"] + " points!");
+            var result = text + ', scoring ' + result["score"];
+            var txt = document.createElement("p");
+            txt.innerHTML = result
+            $('#submissions').append(txt);
+          }
+          else if (result["return"] == "Invalid") {
+            alert("You can only use today's letters, which are located at the top of the screen. Each letter can only be used up to the same number of times it appears in today's list.");
+          }
+          else
+          {
+            alert("Error: " + text + " is not in the dictionary.");
+          }
         });
         return false;
       }
@@ -125,16 +139,19 @@
       </div>
 
       <div style="background-color: rgb(2, 90, 99); padding: 1em;">
-        <p>Quipped is a word game for friends! Every day a new set of letters will appear above. Combine these letters to form a word. The longer the word, the more points you score! Wildcards are marked as question marks (?) and can represent any letter. Beware- while they are useful they won't earn you any points! Share your best score with your friends! Don't worry- we'll keep the word you picked a secret.</p>
+        <p>Quipped is a word game for friends! Every day a new set of letters will appear above. Combine these letters to form a word. The longer the word, the more points you score! Wildcards are marked as question marks (?) and can represent any letter. Replace it with the letter you would like to use when entering your word. Share your best score with your friends! Don't worry- we'll keep the word you picked a secret.</p>
 
         <p>
-          <input id="text_field" type="text" onmousedown="resetTextField();" size="15" style="width: 25em"></input>
+          <input id="text_field" type="text" size="15" style="width: 25em"></input>
           <input type="submit" onclick="checkWord();" value="Score Word"></input>
         </p>
-        <div id="submissions" class="tableDivWrap"></div>
       </div>
 
       <div id="rack" class="tableDivWrap bottomShade"></div>
+
+      <div id="submissions">
+        <p>Your submissions:</p>
+      </div>
 
     </body>
     <footer>
