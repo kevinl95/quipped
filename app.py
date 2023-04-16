@@ -130,7 +130,7 @@ def create_app():
         result = sorted(result, key=lambda w: len(w), reverse=True)
         if len(result) == 0:
             newres = []
-            ind = 1
+            ind = 100000
             # Loop until we have a valid rack
             while len(newres) == 0:
                 a = a + ind
