@@ -68,7 +68,15 @@
         arguments.callee.done = true;
 
         $(document).ready(function () {
-
+          var today = new Date();
+          var dd = String(today.getDate()).padStart(2, '0');
+          var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+          var yyyy = today.getFullYear();
+          // Fill in previous submissions from local storage for the day
+          today = mm + '/' + dd + '/' + yyyy;
+          if (today in localStorage) {
+            document.getElementById("submissions").innerHTML = localStorage.getItem(today);
+          }
           var obj = $("#title");
           obj.rotate3Di(360, 1000, {
             sideChange: function (front) {
@@ -105,6 +113,14 @@
             shareTxt.innerHTML = shareResult;
             $('#submissions').append(txt);
             $('#toshare').append(shareTxt);
+            // Store in session
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            localStorage.setItem(today, $('#submissions').html());
           } else if (result["return"] == "Invalid") {
             alert(
               "You can only use today's letters, which are located at the top of the screen. Each letter can only be used up to the same number of times it appears in today's list."
@@ -197,11 +213,9 @@
                 console.log(err);
               });
             } else {
-
               navigator.clipboard.writeText(text);
-
               // Alert about the copied text
-              alert("Copied to your clipboard: " + text);
+              alert("Successfully copied to your clipboard!");
             }
           })
       </script>
