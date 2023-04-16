@@ -1,5 +1,4 @@
 import random
-import pyscrabbler
 from flask import Flask, render_template, send_file, request, jsonify
 from flask_pwa import PWA
 from scrabble.main import ScrabbleGame
