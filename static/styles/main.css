@@ -59,6 +59,118 @@ div#title span {
 	text-shadow: 0px 0px 50px #333333;
 }
 
+.btn {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Button 1 */
+.btn-1 {
+    color: #2E2E2E;
+    font-weight: 500;
+    border-radius: 30px;
+    padding: 18px 47px;
+    background: linear-gradient(90deg, #FFE259 15.1%, #FFA751 85.42%);
+}
+
+/* Button 2 */
+.btn-2 {
+    color: #2E2E2E;
+    padding: 18px 32px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 20px;
+    border: 1px solid #2E2E2E;
+}
+
+/* Button 3 */
+.btn-3 {
+    color: #fff;
+    padding: 18px 32px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 30px;
+    background: #3A86FF;
+}
+
+/* Button 4 */
+.btn-4 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #2E2E2E;
+    padding: 18px 32px;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0px 4px 15px rgba(46, 46, 46, 0.15);
+}
+
+.btn-4::after {
+    font-family: "Material Icons";
+    content: '\e5ca';
+}
+
+/* Button 5 */
+.btn-5 {
+    position: relative;
+    color: #6D6875;
+    padding: 18px 55px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 30px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.btn-5::before {
+    content: "";
+    position: absolute;
+    top: -5%;
+    right: -22%;
+    transform: rotate(15.6deg);
+    border-left: 54px solid transparent;
+    border-right: 54px solid transparent;
+    border-bottom: 112px solid #D8E2DC;
+    z-index: 9;
+}
+  
+.btn-5::after {
+    content: "";
+    position: absolute;
+    top: -170%;
+    right: -10%;
+    transform: rotate(14.57deg);
+    border-left: 54px solid transparent;
+    border-right: 54px solid transparent;
+    border-bottom: 112px solid #FEC89A;
+}
+  
+.btn-5 span {
+    position: absolute;
+    top: -70%;
+    left: -25%;
+    transform: rotate(13.42deg);
+    border-left: 54px solid transparent;
+    border-right: 54px solid transparent;
+    border-bottom: 112px solid #FCD5CE;
+}
+
+/* Button 6 */
+.btn-6 {
+    color: #112A46;
+    padding: 8px 22px;
+    font-size: 10px;
+    background-color: #3eb8e8;
+}
+
+
 div.tableDivWrap {
 	margin: 0;
 	padding: 0;
