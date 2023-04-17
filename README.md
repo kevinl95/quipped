@@ -10,7 +10,7 @@ Use Python 3.11 to get started. You can install all dependencies from requiremen
 
 ```
 python -m pip install -r requirements.txt
-gunicorn --bind=0.0.0.0 --timeout 600 "app:create_app()
+gunicorn --bind=0.0.0.0 --timeout 600 "app:create_app()"
 ```
 
 You can play Quipped live [here!](https://quipped.app)
