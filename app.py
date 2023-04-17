@@ -86,7 +86,10 @@ def create_app():
         rack = request.form["rack"]
         if len(userInput) > 7 or not userInput.isalpha():
             response = "Invalid"
-        if response != "Invalid":
+        for c in userInput:
+            if not rack.count(c) >= userInput.count(c):
+                response = "badcount"
+        if response != "Invalid" and response != "badcount":
             letters = rack
             result = []
             with open("dictionary.txt", "r") as words_file:

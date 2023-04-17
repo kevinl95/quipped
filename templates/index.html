@@ -76,6 +76,7 @@
           today = mm + '/' + dd + '/' + yyyy;
           if (today in localStorage) {
             document.getElementById("submissions").innerHTML = localStorage.getItem(today);
+            document.getElementById("toshare").innerHTML = localStorage.getItem("sec-" + today);
           }
           var obj = $("#title");
           obj.rotate3Di(360, 1000, {
@@ -121,10 +122,13 @@
 
             today = mm + '/' + dd + '/' + yyyy;
             localStorage.setItem(today, $('#submissions').html());
+            localStorage.setItem("sec-" + today, $('#toshare').html());
           } else if (result["return"] == "Invalid") {
             alert(
               "You can only use today's letters, which are located at the top of the screen. Each letter can only be used up to the same number of times it appears in today's list."
               );
+          } else if (result["return"] == "badcount") {
+            alert("You can only use each character as many times as it appears in today's puzzle.");
           } else {
             alert("Error: " + text + " is not in the dictionary.");
           }
