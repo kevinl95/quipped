@@ -86,9 +86,13 @@ def create_app():
         rack = request.form["rack"]
         if len(userInput) > 7 or not userInput.isalpha():
             response = "Invalid"
-        for c in userInput:
+        wildCount = rack.count("?")
+        for c in list(set(userInput)):
             if not rack.count(c) >= userInput.count(c):
-                response = "badcount"
+                if (rack.count(c) + wildCount) >= userInput.count(c):
+                    wildCount = wildCount - userInput.count(c) + rack.count(c)
+                else:
+                    response = "badcount"
         if response != "Invalid" and response != "badcount":
             letters = rack
             result = []
