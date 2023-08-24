@@ -10,14 +10,14 @@ from datetime import datetime
 def init_sw(self):
     return send_file(
         "static/js/sw.js",
-        attachment_filename="sw.js",
+        download_name="sw.js",
     )
 
 
 def init_manifest(self):
     return send_file(
         "static/manifest.json",
-        attachment_filename="manifest.json",
+        download_name="manifest.json",
     )
 
 
@@ -79,10 +79,9 @@ def create_app():
     PWA(app)
 
     @app.route("/.well-known/assetlinks.json", methods=["GET"])
-    def asset_LINKS(self):
+    def asset_links():
         return send_file(
-            "assetlinks.json",
-            attachment_filename="assetlinks.json",
+            "assetlinks.json"
         )
 
     @app.route("/checkword", methods=["POST"])
