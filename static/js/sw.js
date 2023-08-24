@@ -35,4 +35,3 @@ if (status.state === 'granted') {
 else {
   console.error('[BackgroundSync] Does not have permission');
 }
-}
