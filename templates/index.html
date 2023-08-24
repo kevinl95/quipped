@@ -245,7 +245,7 @@
         .then((registration) => {
           console.log(`Yay! ServiceWorker is loaded 🎉`);
           navigator.serviceWorker.ready.then(function(swRegistration) {
-            swRegistration.periodicSync.register({
+            registration.periodicSync.register({
               tag: 'quipSync',
               minInterval: 24 * 60 * 60 * 1000,
               powerState: 'avoid-draining',
