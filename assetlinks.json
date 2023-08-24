@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.quipped.twa",
+        "sha256_cert_fingerprints": ["5D:10:DE:71:78:C4:BE:39:88:57:41:FD:22:A1:17:24:2B:43:8F:5C:03:82:B4:8E:40:6A:62:C6:0A:91:92:1A"]
+      }
+    }]

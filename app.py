@@ -78,6 +78,13 @@ def create_app():
     app = Flask(__name__)
     PWA(app)
 
+    @app.route("/.well-known/assetlinks.json", methods=["GET"])
+    def asset_LINKS(self):
+        return send_file(
+            "assetlinks.json",
+            attachment_filename="assetlinks.json",
+        )
+
     @app.route("/checkword", methods=["POST"])
     def receive_data():
         userInput = request.form["word"].upper().strip()  # Convert to uppercase and remove spaces
