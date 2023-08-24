@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "app.quipped.twa",
-        "sha256_cert_fingerprints": ["5D:10:DE:71:78:C4:BE:39:88:57:41:FD:22:A1:17:24:2B:43:8F:5C:03:82:B4:8E:40:6A:62:C6:0A:91:92:1A"]
+        "sha256_cert_fingerprints": ["6D:29:D6:9E:F7:39:F4:FF:EA:EF:07:AC:B3:F0:E5:CA:80:67:57:30:1B:FD:14:8E:95:BF:C1:D0:AC:73:20:3C"]
       }
     }]
