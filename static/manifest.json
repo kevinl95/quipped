@@ -463,5 +463,9 @@
   "id": "quipped",
   "dir": "auto",
   "lang": "en",
-  "scope": "/"
+  "scope": "/",
+  "categories": [
+    "entertainment",
+    "games"
+  ]
 }
