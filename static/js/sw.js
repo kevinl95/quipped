@@ -16,3 +16,23 @@ workbox.routing.registerRoute(
     cacheName: CACHE
   })
 );
+
+const status = await navigator.permissions.query({
+  // @ts-ignore
+  name: 'periodic-background-sync',
+});
+
+if (status.state === 'granted') {
+  navigator.serviceWorker.ready.then(async (sw: any) => {
+    await sw.periodicSync.register('periodicsync', {
+      minInterval: 24 * 60 * 60 * 1000,
+    });
+  })
+    .catch(error => {
+      console.error('[BackgroundSync] Error: ' + JSON.stringify(error, null, 2));
+    });
+}
+else {
+  console.error('[BackgroundSync] Does not have permission');
+}
+}

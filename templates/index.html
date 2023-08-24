@@ -243,15 +243,7 @@
       navigator.serviceWorker
         .register("/sw.js")
         .then((registration) => {
-          console.log(`Yay! ServiceWorker is loaded 🎉`);
-          navigator.serviceWorker.ready.then(function(registration) {
-            registration.periodicSync.register({
-              tag: 'quipSync',
-              minInterval: 24 * 60 * 60 * 1000,
-              powerState: 'avoid-draining',
-              networkState: 'avoid-cellular' 
-            }).then((periodicSyncReg) => {console.log('Success setting up periodic sync')}, () => {console.log('Some error occured.')});
-          });
+          console.log(`Yay! ServiceWorker is loaded 🎉`)
         })
         .catch((err) => {
           console.log(`Boo! ServiceWorker didn't load 😬: ${err}`);
